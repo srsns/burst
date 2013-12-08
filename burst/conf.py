@@ -56,7 +56,11 @@ class Configuration(object):
     - update_content_length: flag to automatically update the header on edition
   """
   ssl_map = {"SSLv3": ssl.PROTOCOL_SSLv3, "SSLv23": ssl.PROTOCOL_SSLv23,
-             "SSLv2": ssl.PROTOCOL_SSLv2, "TLSv1": ssl.PROTOCOL_TLSv1}
+             "TLSv1": ssl.PROTOCOL_TLSv1}
+  try:
+    ssl_map['SSLv2'] = ssl.PROTOCOL_SSLv2
+  except:
+    print "SSLv2 is unavailable, most likely blame debian"
 
   def __init__(self):
     self.ip = '127.0.0.1'
